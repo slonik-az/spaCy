@@ -1,0 +1,34 @@
+##***|> Build spacy
+##   |=============
+## ++|> Build in-place
+##  -|> (1) Link source tree into Python search tree
+* Link ~/Python/spacy to ../dev/NLP/spaCy/spacy
+  > cd ~/Python
+  > ln -s ../dev/NLP/spaCy/spacy .
+
+##  -|> (2) Build inplace:
+  > python setup.py build_ext -i -f |& tee setup_build_ext.log
+  - OR
+  > python setup.py build_ext --inplace |& tee setup_build_ext.log
+  -i - inplace
+  -f - rebuild everything regardless timestamps
+
+##  -|> (3) Download text files:
+  > python -m spacy.en.download
+
+##  -|> ** If you need to clean:
+  > find . \( -name '*.o' -o -name '*.so' -o -name '*.cpp' \) |xargs rm
+
+* The following does not work for inplace builds
+# > python setup.py --verbose clean --all
+#  --all - remove everything from the build
+
+################################################################################
+##~~~|> EMACS customization section.
+## LOCAL VARIABLES:
+## mode:        Text
+## coding:      utf-8
+## default-input-method: cyrillic-translit
+## fill-column: 100
+## tab-width:   4
+## END:
