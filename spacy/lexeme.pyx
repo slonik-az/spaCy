@@ -131,6 +131,10 @@ cdef class Lexeme:
         def __get__(self): return self.vocab.strings[self.c.shape]
         def __set__(self, unicode x): self.c.shape = self.vocab.strings[x]
 
+    @property
+    def has_repvec(self):
+        return self.c.l2_norm != 0
+
     property prefix_:
         def __get__(self): return self.vocab.strings[self.c.prefix]
         def __set__(self, unicode x): self.c.prefix = self.vocab.strings[x]
